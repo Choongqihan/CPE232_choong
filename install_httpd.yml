@@ -1,18 +1,17 @@
 ---
-- hosts: 192.168.56.105
+- hosts: 192.168.56.109
   become: true
   tasks:
 
   - name: httpd latest version install
-    dnf:
+    yum:
       name: httpd
       state: latest
-
   - name: enable service
     service:
       name: httpd
-      status: started
-
+      state: started
+  handlers:
   - name: restart httpd service
     service:
       name: httpd
